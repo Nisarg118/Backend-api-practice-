@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import fileUpload from "express-fileupload";
 
 import userRoutes from "./routes/user.routes.js";
+import videoRoutes from "./routes/video.routes.js";
 import { connectDB } from "./config/db.config.js";
 
 dotenv.config();
@@ -15,11 +16,13 @@ app.use(express.json());
 app.use(
   fileUpload({
     useTempFiles: true,
-    tempFileDir:"/tmp/"
+    tempFileDir: "/tmp/",
   })
 );
 
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/video", videoRoutes);
+
 app.listen(PORT, () => {
   console.log(`Connected to server at http://localhost:${PORT}`);
 });
